@@ -33,7 +33,7 @@ export default {
 
 h1{
     font-family: 'Acme' ;
-    font-size: 80px;
+    font-size: 50px;
 }
 
 

@@ -18,6 +18,9 @@ html, body {
     background-color: #f4f1e0;
     margin: 0px;
     padding: 0px;
+    background-image: url(../assets/background.png);
+    background-size: cover;
+    
    
 }
 

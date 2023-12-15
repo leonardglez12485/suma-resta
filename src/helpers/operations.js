@@ -38,7 +38,6 @@ const getOperation = ()=>{
         respuesta.resp= getResultado(a,b,c,s1,s2);
         respuesta.valido= false;
     }
-    console.log(respuesta)
     return respuesta;
 }
 

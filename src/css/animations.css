@@ -24,27 +24,25 @@
     }
 
   button{
-    background: #5f0e46;
-    background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
-  background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
-  background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
-  background-image: -o-linear-gradient(top, #eb94d0, #2079b0);
-  background-image: linear-gradient(to bottom, #eb94d0, #2079b0);
-    -webkit-border-radius: 28;
-    -moz-border-radius: 28;
-    border-radius: 28px;
-  text-shadow: 3px 2px 1px #9daef5;
-    -webkit-box-shadow: 6px 5px 24px #666666;
-    -moz-box-shadow: 6px 5px 24px #666666;
-    box-shadow: 6px 5px 24px #666666;
-  font-family: Helvetica, sans-serif;
-    color: #fafafa;
+   
+ 
+ background-color: transparent;
+    /* color: black;
     font-size: 15px;
     padding: 7px;
     text-decoration: none;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    text-shadow: 3px 2px 1px #9daef5;
+    -webkit-text-shadow: 6px 5px 24px #666666;
+    -moz-text-shadow: 6px 5px 24px #666666;
+    text-shadow: 6px 5px 24px #666666; */
     animation: span4 2s linear infinite;
-    animation-delay: 4s;
-
+    animation-delay: 4s; 
+   color: #5f0e46;
+   font-size: 15px;
+   letter-spacing: 0; 
   }
 
   @keyframes span4{
@@ -59,7 +57,7 @@
 button:hover{
     transition: all .5s;
     transform: rotate(-3deg) scale(1.1);
-    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+    box-shadow: 0px 3px 5px rgba(238, 234, 234, 0.4);
 }
 button:hover span{
     animation-play-state: paused;
