@@ -12,12 +12,20 @@ export default {
   components: {
     MathPage,
   },
+
+  data(){
+    return{
+      sound: new Audio(require('./assets/music.mp3'))
+   }
+},
   methods: {
    
   },
+
   mounted() {
-    
+   
   },
+
   
 }
 </script>

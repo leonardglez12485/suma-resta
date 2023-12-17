@@ -16,6 +16,12 @@ export function getRandomArbitrary(min, max) {
     return Math.trunc((Math.random() * (max - min) + min));
   }
 
+export function playSound(){
+    this.sound.play()
+    this.sound.autoplay= true
+    // this.sound.muted= true
+   }
+
 const getResultado = (a, b, c, s1, s2)=>{
     if(s1==='+' && s2==='+') return a+b+c;
     if(s1==='+' && s2==='-') return a+b-c;

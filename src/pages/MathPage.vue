@@ -8,7 +8,10 @@
    <div id="div-jugar">
     <div id="div-play">
       <img id="nube-play" src="../assets/nube.png" alt="">
-      <img id="img-play"  src="../assets/boton.png" alt=""  v-if="inicio" @click="restart">
+     
+        <img id="img-play"  src="../assets/boton.png" alt=""  v-if="inicio" @click="restart">
+        <!-- <img id="img-pause" src="../assets/pause.png" alt="" v-if="sonido" @click="pauseSound"> -->
+      
     </div>
     
     <!-- <button id="button-inicio" v-if="inicio" @click="restart">Jugar</button> -->
@@ -18,8 +21,10 @@
 
 <div id="div-juego" v-else>
  <div id="div-gameOver" v-if="gameOver">
-  <h1 id="h1-gameOver">Game Over</h1>
-  <button v-if="showButtom" @click="restart">Jugar otra vez</button>
+  <h1 class="stroke" id="h1-gameOver">Game Over</h1>
+  <img src="../assets/restart.png" alt="" @click="restart">
+  <!-- <button v-if="showButtom" @click="restart">Jugar otra vez</button> -->
+  <img id="img-burro" src="../assets/burro.png" alt="">
  </div>
  <div v-else>
   <div id="vidas">
@@ -38,6 +43,7 @@
     <div id="div-lista-resp">
       <img id="img-gato-game" src="../assets/gato-game.png" alt="">
       <Respuesta :respuestas="respuestasArray" @selection="checkAnswer" />
+      <!-- <Respuesta :respuestas="respuestasArray" @selection="timer" /> -->
       <img id="img-coneja-game" src="../assets/conejita-game.png" alt="">
     </div>
     
@@ -71,7 +77,10 @@ export default {
       gameOver: false,
       inicio: true,
       vidas:3,
-      puntos:0
+      puntos:0,
+      sonido: true,
+      sound: new Audio(require('../assets/music.mp3')),
+      perdTime: true
     };
   },
   methods: {
@@ -122,19 +131,53 @@ export default {
       //
     },
 
-    // playSound(){
-    // const sound = new Audio('./assets/music.mp3')
-    // sound.play()
+    changeTime(){
+    this.perdTime= true
+    },
+    checkTime(){
+      setTimeout(this.changeTime, 2000)
+    },
+
+    // loseByTime(){
+    // if(this.perdTime){
+    //   this.vidas-=1
+    //     if(this.vidas===0){
+    //       this.message = `Tiempo Agotado!!!!`
+    //       setTimeout(
+    //       this.gameOver= true
+    //     ,2000);
+    //      // this.showButtom =true
+    //     } else{
+    //       this.message = `Tiempo Agotado!!!!`
+    //       setTimeout(
+    //       this.contGame
+    //     ,2000);
+    //     }
+    // }
     // },
+
+    playSound(){
+     this.sound.currentTime=0
+     this.sound.play()
+     this.sound.loop= true
+   },
+
+   pauseSound(){
+     this.sound.pause()
+   },
 
     restart(){
       this.gameOver= false,
       this.showButtom= false,
       this.vidas =3,
+      this.message="",
       this.puntos=0,
       this.inicio = false,
+      // this.checkTime(),
       this.newGame
-
+      if(this.sonido){
+        this.playSound()
+      }
     },
 
 
@@ -145,6 +188,7 @@ export default {
         (this.showButtom = false),
         (this.respuesta = {}),
         this.gameOver= false,
+        // this.checkTime(),
         this.chargeOps();
     },
 
@@ -158,35 +202,49 @@ export default {
         this.gameOver = false,
         (this.respuesta = {}),
         this.chargeOps()
+        // this.checkTime()
         // this.vidas= this.vidas
     },
 
+   
     checkAnswer(resp) {
-     
+      this.perdTime= false
       this.showAnswer = true
       if (resp === this.respuesta.resp) {
-        this.puntos+=1
+        this.puntos+=3
         this.message = `Correcto, la respuesta es ${this.respuesta.resp}`
         setTimeout(
           this.contGame
-        ,1000);
+        ,2000);
       } else{
         this.vidas-=1
         if(this.vidas===0){
-          console.log('pepe')
+          this.message = `Opps, la respuesta era ${this.respuesta.resp}`
+          setTimeout(
           this.gameOver= true
-          this.showButtom =true
+        ,2000);
+         // this.showButtom =true
         } else{
           this.message = `Opps, la respuesta era ${this.respuesta.resp}`
-          this.showButtom = true
+          setTimeout(
+          this.contGame
+        ,2000);
         }
-    
-        
+ 
       } 
     },
+    // timer(){
+    //   if(this.perdTime){
+    //     this.checkAnswer()
+    //   }else{
+    //     this.loseByTime();
+    //   }
+    // }
   },
+  // created(){  
+  //  this.playSound()
+  // },
   mounted() {
-   // this.playSound()
     this.chargeOps()
   },
 };
@@ -252,9 +310,15 @@ h2{
 }
 
 #h1-gameOver{ 
-  padding-top: 220px;
+  padding-top: 180px;
   font-family: "Acme";
+  font-size: 80px;
 } 
+.stroke {
+-webkit-text-fill-color: #784e39;
+-webkit-text-stroke: 1px black;
+}
+
 
 #img-portada{
   margin-bottom: 50px;
@@ -297,6 +361,14 @@ margin-top: 40px;
 #div-jugar{
   display: flex;
   justify-content: center;
+}
+
+#pause-play{
+  padding-left: 30px;
+  display: grid;
+}
+#img-pause{
+  padding-left: 50px;
 }
 
 #div-lista-resp{
