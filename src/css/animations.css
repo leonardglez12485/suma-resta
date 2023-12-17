@@ -14,7 +14,7 @@
     border-radius: 3px;
     position:relative;
     text-transform:uppercase;
-    color:#5f0e46;
+    color:#784e39;
     font-weight:700;
     letter-spacing:1px;
     border:none;
@@ -41,7 +41,7 @@
     text-shadow: 6px 5px 24px #666666; */
     animation: span4 2s linear infinite;
     animation-delay: 4s; 
-   color: #5f0e46;
+   color: #784e39;
    font-size: 15px;
    letter-spacing: 0; 
   }

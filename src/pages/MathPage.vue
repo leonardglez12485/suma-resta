@@ -35,21 +35,21 @@
   </div>
   <h1 v-if="!respuesta">Cargando Operación...</h1>
   <div v-else>
-    <h2 id="h2-resuelve">Resuelve la Operación</h2>
+    <h2 class="stroke" id="h2-resuelve">Resuelve la Operación</h2>
     <div id="suma">
-      <Suma :operation="respuesta.operation" />
+      <Suma class="stroke" :operation="respuesta.operation" />
     </div>
     
     <div id="div-lista-resp">
       <img id="img-gato-game" src="../assets/gato-game.png" alt="">
-      <Respuesta :respuestas="respuestasArray" @selection="checkAnswer" />
+      <Respuesta  :respuestas="respuestasArray" @selection="checkAnswer" />
       <!-- <Respuesta :respuestas="respuestasArray" @selection="timer" /> -->
       <img id="img-coneja-game" src="../assets/conejita-game.png" alt="">
     </div>
     
 
-    <h2 id="h2-resp" v-if="showAnswer" class="fade-in">{{ message }}</h2>
-    <button v-if="showButtom" @click="newGame">Continuar Jugando</button>
+    <h2 id="h2-resp" v-if="showAnswer" class="fade-in stroke">{{ message }}</h2>
+    <button class="stroke" v-if="showButtom" @click="newGame">Continuar Jugando</button>
   </div>
  </div>
 </div>
@@ -303,6 +303,7 @@ h2{
 }
 #h2-resuelve{
   margin-top: 10px;
+  font-family: "Acme";
 }
 
 #suma{

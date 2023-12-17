@@ -26,21 +26,22 @@ ul {
   /* list-style-image: url('../assets/navbar.png'); */
 }
 li {
-  background-color: #5f0e46;
-  /* border-radius: 25px; */
+  background-color: #784e39;
+  border-radius:5px;
+  border: 3px solid black;
   color: #cae6e1;
   cursor: pointer;
   margin-bottom: 10px;
   width: 60px;
-  height: 30px;
+  height: 25px;
   scrollbar-shadow-color: #5f0e46;
 }
-
+/* 
 li:hover {
   background-color: #579389;
   color: #cae6e1;
   border: 2px solid #5f0e46;
-}
+} */
 
 .resp-container {
   display: flex;

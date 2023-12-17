@@ -36,7 +36,7 @@ const getOperation = ()=>{
     const c = getRandomArbitrary(0,9);
     const s1 = signos[Math.floor(Math.random() * 2)];
     const s2 = signos[Math.floor(Math.random() * 2)];
-    respuesta.operation = `${a} ${s1} ${b} ${s2} ${c}`;
+    respuesta.operation = `${a} ${s1} ${b} ${s2} ${c} =`;
     if(getResultado(a,b,c,s1,s2)>0){
         respuesta.resp= getResultado(a,b,c,s1,s2);
         respuesta.valido= true;
