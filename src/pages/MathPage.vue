@@ -1,7 +1,7 @@
 
 <template>
  <div id="inicio" v-if="inicio">
-  <img src="../assets/portada.png" alt="">
+  <img id="img-portada" src="../assets/portada.png" alt="">
     <!-- <h1 id="h1-inicio">Bienvenidos a FuntMath</h1> -->
     <!-- <p id="p-inicio">sdasdasasd adssdfaafasdfasdfas </p> -->
    
@@ -31,8 +31,10 @@
   <h1 v-if="!respuesta">Cargando Operación...</h1>
   <div v-else>
     <h2 id="h2-resuelve">Resuelve la Operación</h2>
+    <div id="suma">
+      <Suma :operation="respuesta.operation" />
+    </div>
     
-    <Suma :operation="respuesta.operation" />
     <div id="div-lista-resp">
       <img id="img-gato-game" src="../assets/gato-game.png" alt="">
       <Respuesta :respuestas="respuestasArray" @selection="checkAnswer" />
@@ -241,16 +243,26 @@ h2{
   font-family: "Acme";
   font-size: 20px;
 }
+#h2-resuelve{
+  margin-top: 10px;
+}
+
+#suma{
+  margin-top: 30px;
+}
 
 #h1-gameOver{ 
   padding-top: 220px;
   font-family: "Acme";
 } 
 
-#inicio{
+#img-portada{
+  margin-bottom: 50px;
+}
+/* #inicio{
   background-image: url(../assets/fondoPortada.png);
   background-size: cover;
-}
+} */
 
 #img-gato{
 margin-bottom: 50px;
@@ -291,6 +303,7 @@ margin-top: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top:50px;
 }
 
 #img-gato-game{
