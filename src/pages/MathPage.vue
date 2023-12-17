@@ -1,15 +1,22 @@
 
 <template>
  <div id="inicio" v-if="inicio">
-    <h1 id="h1-inicio">Bienvenidos a FuntMath</h1>
-    <p id="p-inicio">Practica las operaciones matemáticas y acumula la mayor cantidad de puntos posible</p>
+  <img src="../assets/portada.png" alt="">
+    <!-- <h1 id="h1-inicio">Bienvenidos a FuntMath</h1> -->
+    <!-- <p id="p-inicio">sdasdasasd adssdfaafasdfasdfas </p> -->
+   
    <div id="div-jugar">
-    <button id="button-inicio" v-if="inicio" @click="restart">Jugar</button>
-    <img src="../assets/leon.png" alt="">
+    <div id="div-play">
+      <img id="nube-play" src="../assets/nube.png" alt="">
+      <img id="img-play"  src="../assets/boton.png" alt=""  v-if="inicio" @click="restart">
+    </div>
+    
+    <!-- <button id="button-inicio" v-if="inicio" @click="restart">Jugar</button> -->
+    <img id="img-gato" src="../assets/gato.png" alt="">
    </div>
 </div>
 
-<div v-else>
+<div id="div-juego" v-else>
  <div id="div-gameOver" v-if="gameOver">
   <h1 id="h1-gameOver">Game Over</h1>
   <button v-if="showButtom" @click="restart">Jugar otra vez</button>
@@ -26,7 +33,12 @@
     <h2 id="h2-resuelve">Resuelve la Operación</h2>
     
     <Suma :operation="respuesta.operation" />
-    <Respuesta :respuestas="respuestasArray" @selection="checkAnswer" />
+    <div id="div-lista-resp">
+      <img id="img-gato-game" src="../assets/gato-game.png" alt="">
+      <Respuesta :respuestas="respuestasArray" @selection="checkAnswer" />
+      <img id="img-coneja-game" src="../assets/conejita-game.png" alt="">
+    </div>
+    
 
     <h2 id="h2-resp" v-if="showAnswer" class="fade-in">{{ message }}</h2>
     <button v-if="showButtom" @click="newGame">Continuar Jugando</button>
@@ -181,9 +193,10 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
 
-body{
-  background-image: url(../assets/background.jpg);
-}
+/* #div-juego{
+  background-image: url(../assets/fondoPortada.png);
+  background-size: cover;
+} */
 
 #img-vida {
   margin-left: 20px;
@@ -234,6 +247,25 @@ h2{
   font-family: "Acme";
 } 
 
+#inicio{
+  background-image: url(../assets/fondoPortada.png);
+  background-size: cover;
+}
+
+#img-gato{
+margin-bottom: 50px;
+margin-top: 50px;
+}
+
+#img-play{
+margin-top: 40px;
+ height: 50px;
+}
+
+#nube-play{
+  margin-top: 40px;
+}
+
 #h1-inicio{
   padding-top: 20px;
   font-size: 40px;
@@ -254,5 +286,24 @@ h2{
   display: flex;
   justify-content: center;
 }
+
+#div-lista-resp{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#img-gato-game{
+  margin-left: 40px;
+  margin-top: 50px;
+}
+
+#img-coneja-game{
+  margin-right: 40px;
+  margin-top: 50px;
+}
+
+
+
 
 </style>

@@ -26,13 +26,13 @@ ul {
   /* list-style-image: url('../assets/navbar.png'); */
 }
 li {
-  background-color: #cae6e1;
-  border-radius: 25px;
-  border: 2px solid #5f0e46;
+  background-color: #5f0e46;
+  /* border-radius: 25px; */
+  color: #cae6e1;
   cursor: pointer;
   margin-bottom: 10px;
-  width: 120px;
-  height: 25px;
+  width: 60px;
+  height: 30px;
   scrollbar-shadow-color: #5f0e46;
 }
 
