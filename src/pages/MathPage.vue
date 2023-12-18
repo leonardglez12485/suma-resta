@@ -42,7 +42,7 @@
     
     <div id="div-lista-resp">
       <img id="img-gato-game" src="../assets/gato-game.png" alt="">
-      <Respuesta  :respuestas="respuestasArray" @selection="checkAnswer" />
+      <Respuesta  :respuestas="respuestasArray" @selection="checkAnswer"  />
       <!-- <Respuesta :respuestas="respuestasArray" @selection="timer" /> -->
       <img id="img-coneja-game" src="../assets/conejita-game.png" alt="">
     </div>
@@ -78,9 +78,10 @@ export default {
       inicio: true,
       vidas:3,
       puntos:0,
-      sonido: false,
+      sonido: true,
       sound: new Audio(require('../assets/music.mp3')),
-      perdTime: true
+      perdTime: true,
+      a:null
     };
   },
   methods: {
@@ -132,29 +133,29 @@ export default {
     },
 
     changeTime(){
-    this.perdTime= true
-    },
-    checkTime(){
-      setTimeout(this.changeTime, 2000)
+    if(this.perdTime){
+        this.loseByTime()
+      }
     },
 
-    // loseByTime(){
-    // if(this.perdTime){
-    //   this.vidas-=1
-    //     if(this.vidas===0){
-    //       this.message = `Tiempo Agotado!!!!`
-    //       setTimeout(
-    //       this.gameOver= true
-    //     ,2000);
-    //      // this.showButtom =true
-    //     } else{
-    //       this.message = `Tiempo Agotado!!!!`
-    //       setTimeout(
-    //       this.contGame
-    //     ,2000);
-    //     }
-    // }
-    // },
+    loseByTime(){
+      this.vidas-=1
+      this.perdTime= true;
+        if(this.vidas===0){
+          this.showAnswer = true
+          this.message = `Uhhh...se agoto tu tiempo!!!!`
+          setTimeout(
+          this.gameOver= true
+        ,2000);
+         // this.showButtom =true
+        } else{
+          this.showAnswer = true
+          this.message = `Uhhh...se agoto tu tiempo!!!!`
+          setTimeout(
+          this.contGame
+        ,2000);
+        }       
+    },
 
     playSound(){
      this.sound.currentTime=0
@@ -167,33 +168,38 @@ export default {
    },
 
     restart(){
+      this.a = null,
       this.gameOver= false,
       this.showButtom= false,
       this.vidas =3,
       this.message="",
       this.puntos=0,
       this.inicio = false,
-      // this.checkTime(),
+      this.perdTime= true,
       this.newGame
       if(this.sonido){
         this.playSound()
       }
+      this.a= setTimeout(this.changeTime, 15000)
+      
     },
 
 
     newGame() {
+     
       (this.respuestasArray = []),
         (this.message = ""),
         (this.showAnswer = false),
         (this.showButtom = false),
         (this.respuesta = {}),
         this.gameOver= false,
-        // this.checkTime(),
-        this.chargeOps();
+        this.perdTime= true,
+        this.chargeOps()
+        
     },
 
-    contGame() {
-     
+      contGame() {
+      this.a= null,
       (this.message = `Correcto, la respuesta es ${this.respuesta.resp}`),
       (this.respuestasArray = []),
         (this.message = ""),
@@ -201,13 +207,14 @@ export default {
         (this.showButtom = false),
         this.gameOver = false,
         (this.respuesta = {}),
+        this.perdTime= true,
         this.chargeOps()
-        // this.checkTime()
-        // this.vidas= this.vidas
+        this.a= setTimeout(this.changeTime, 15000)
     },
 
    
     checkAnswer(resp) {
+      if(this.a!==null ) clearTimeout(this.a);
       this.perdTime= false
       this.showAnswer = true
       if (resp === this.respuesta.resp) {
@@ -217,6 +224,7 @@ export default {
           this.contGame
         ,2000);
       } else{
+        this.perdTime= false
         this.vidas-=1
         if(this.vidas===0){
           this.message = `Opps, la respuesta era ${this.respuesta.resp}`
@@ -233,13 +241,8 @@ export default {
  
       } 
     },
-    // timer(){
-    //   if(this.perdTime){
-    //     this.checkAnswer()
-    //   }else{
-    //     this.loseByTime();
-    //   }
-    // }
+
+
   },
   // created(){  
   //  this.playSound()
