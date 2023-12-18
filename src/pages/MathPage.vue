@@ -22,7 +22,7 @@
 <div id="div-juego" v-else>
  <div id="div-gameOver" v-if="gameOver">
   <h1 class="stroke" id="h1-gameOver">Game Over</h1>
-  <img src="../assets/restart.png" alt="" @click="restart">
+  <img id="button-restart" src="../assets/restart.png" alt="" @click="restart">
   <!-- <button v-if="showButtom" @click="restart">Jugar otra vez</button> -->
   <img id="img-burro" src="../assets/burro.png" alt="">
  </div>
@@ -78,7 +78,7 @@ export default {
       inicio: true,
       vidas:3,
       puntos:0,
-      sonido: true,
+      sonido: false,
       sound: new Audio(require('../assets/music.mp3')),
       perdTime: true
     };
@@ -314,7 +314,14 @@ h2{
   padding-top: 180px;
   font-family: "Acme";
   font-size: 80px;
+  transition: .5rem ease;
+  animation: floatGameOver 2s ease-in-out 1; 
 } 
+
+#button-restart{
+  transition: .5rem ease;
+  animation: floatButton 2s ease-in-out 1; 
+}
 .stroke {
 -webkit-text-fill-color: #784e39;
 -webkit-text-stroke: 1px black;
@@ -332,15 +339,103 @@ h2{
 #img-gato{
 margin-bottom: 50px;
 margin-top: 50px;
+/* transition: .5rem ease;
+animation: floatImage 4s ease-in-out infinite; */
 }
+
+@keyframes floatImage {
+       0% {
+           transform: translateY(0);
+       }
+       50% {
+           transform: translateY(-1.8rem);
+       }
+       100% {
+           transform: translateY(0);
+       }
+   }
+   @keyframes floatButton {
+       0% {
+           transform: translateX(-8.8rem);
+       }
+       /* 50% {
+           transform: translateX();
+       } */
+       100% {
+           transform: translateX(0);
+       }
+   }
+   @keyframes floatImg {
+       0% {
+           transform: translateX(-1.5rem);
+       }
+       75% {
+           transform: translateX(1rem);
+       }
+       100% {
+           transform: translateX(0);
+       }
+   }
+   @keyframes floatImgInv {
+       0% {
+           transform: translateX(1.5rem);
+       }
+       75% {
+           transform: translateX(-1rem);
+       }
+       100% {
+           transform: translateX(0);
+       }
+   }
+
+   @keyframes floatGameOver {
+       0% {
+           transform: translateY(-8.8rem);
+       }
+       40% {
+           transform: translateY(0);
+       }
+       60%{
+        transform: translateY(-1.5rem);
+       }
+       75%{
+        transform: translateY(0);
+       }
+       85%{
+        transform: translateY(-0.7rem);
+       }
+       90%{
+        transform: translateY(0);
+       }
+       95%{
+        transform: translateY(-0.3rem);
+       }
+       100% {
+           transform: translateY(0);
+       }
+   }
+
+   
+
+  /* #img-gato:hover{
+    transform: scale(1.1);
+  } */
 
 #img-play{
 margin-top: 40px;
- height: 50px;
+height: 50px;
+transition: .5rem ease;
+animation: floatButton 1s ease-in-out 1;
 }
 
 #nube-play{
   margin-top: 40px;
+  transition: .5rem ease;
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+#nube-play:hover{
+  transform: scale(1.1);
 }
 
 #h1-inicio{
@@ -382,11 +477,15 @@ margin-top: 40px;
 #img-gato-game{
   margin-left: 40px;
   margin-top: 50px;
+  transition: .5rem ease;
+  animation: floatImg 1.5s ease-in-out 1;
 }
 
 #img-coneja-game{
   margin-right: 40px;
   margin-top: 50px;
+  transition: .5rem ease;
+  animation: floatImgInv 1.5s ease-in-out 1;
 }
 
 
