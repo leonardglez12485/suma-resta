@@ -23,6 +23,12 @@
     font-family: 'Acme', "Lucida Grande", sans-serif;
     cursor: pointer;
     }
+    li#lista2{
+      height: 30px;
+      width: 70px;
+      font-size: .5rem;
+      color: white;
+    }
 
   button{
    

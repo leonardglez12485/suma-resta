@@ -28,6 +28,7 @@
  </div>
  <div v-else>
   <div id="vidas">
+    <h2 id="h2-puntos">Level: {{ this.level }}</h2>
     <img id="img-puntos" src="../assets/puntos.png" alt="" />
     <h2 id="h2-puntos">{{ this.puntos }}</h2>
     <img id="img-vida" src="../assets/vida.png" alt="" />
@@ -79,8 +80,11 @@ export default {
       vidas:3,
       puntos:0,
       sonido: true,
+      level: 1,
+      time: 45000,
       sound: new Audio(require('../assets/music.mp3')),
       perdTime: true,
+      sumaPuntos: 2,
       a:null
     };
   },
@@ -180,8 +184,7 @@ export default {
       if(this.sonido){
         this.playSound()
       }
-      this.a= setTimeout(this.changeTime, 15000)
-      
+      this.a= setTimeout(this.changeTime, this.time)
     },
 
 
@@ -198,7 +201,41 @@ export default {
         
     },
 
+    defineLevel(){
+      if(this.puntos>=20 && this.puntos < 50){
+         this.time= 32000,
+         this.level=2,
+         this.sumaPuntos=3
+         }else{
+          if(this.puntos>= 50 && this.puntos <90){
+            this.time= 25000,
+            this.level=3,
+            this.sumaPuntos=4
+          } else{
+            if(this.puntos>= 90 && this.puntos < 140){
+              this.level=4,
+              this.time= 15000,
+              this.sumaPuntos=5
+         }
+         else {
+          if(this.puntos>= 140){
+            this.level= 5, 
+            this.time = 9000,
+            this.sumaPuntos=10
+          }else{
+           if(this.puntos>=0 && this.puntos< 20){
+            this.level= 1
+            this.time= 45000,
+            this.sumaPuntos= 2
+           }
+          }
+         }
+        }
+      }
+    },
+
       contGame() {
+      this.defineLevel(),
       this.a= null,
       (this.message = `Correcto, la respuesta es ${this.respuesta.resp}`),
       (this.respuestasArray = []),
@@ -208,8 +245,8 @@ export default {
         this.gameOver = false,
         (this.respuesta = {}),
         this.perdTime= true,
-        this.chargeOps()
-        this.a= setTimeout(this.changeTime, 15000)
+        this.chargeOps(),
+        this.a= setTimeout(this.changeTime, this.time)
     },
 
    
@@ -218,7 +255,7 @@ export default {
       this.perdTime= false
       this.showAnswer = true
       if (resp === this.respuesta.resp) {
-        this.puntos+=3
+        this.puntos+= this.sumaPuntos
         this.message = `Correcto, la respuesta es ${this.respuesta.resp}`
         setTimeout(
           this.contGame
