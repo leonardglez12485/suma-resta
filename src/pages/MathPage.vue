@@ -467,7 +467,7 @@ animation: floatImage 4s ease-in-out infinite; */
   } */
 
   h6{
-  font-size: 20px;
+  font-size: 30px;
   font-family: "Acme";
   transition: .5rem ease;
   animation: floatButton 1s ease-in-out 1;
