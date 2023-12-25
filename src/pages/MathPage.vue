@@ -304,7 +304,7 @@ export default {
   height: 25px;
 }
 #img-puntos {
-  margin-left: 200px;
+  margin-left: 100px;
   width: 25px;
   height: 25px;
 }
