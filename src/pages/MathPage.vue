@@ -22,9 +22,12 @@
 <div id="div-juego" v-else>
  <div id="div-gameOver" v-if="gameOver">
   <h1 class="stroke" id="h1-gameOver">Game Over</h1>
+  <h6 class="stroke" >Level: {{ this.level }}</h6>
+  <h6 class="stroke" >Puntos: {{ this.puntos }}</h6>
   <img id="button-restart" src="../assets/restart.png" alt="" @click="restart">
   <!-- <button v-if="showButtom" @click="restart">Jugar otra vez</button> -->
   <img id="img-burro" src="../assets/burro.png" alt="">
+  
  </div>
  <div v-else>
   <div id="vidas">
@@ -303,6 +306,8 @@ export default {
   width: 25px;
   height: 25px;
 }
+
+
 #img-puntos {
   margin-left: 100px;
   width: 25px;
@@ -460,6 +465,13 @@ animation: floatImage 4s ease-in-out infinite; */
   /* #img-gato:hover{
     transform: scale(1.1);
   } */
+
+  h6{
+  font-size: 20px;
+  font-family: "Acme";
+  transition: .5rem ease;
+  animation: floatButton 1s ease-in-out 1;
+}
 
 #img-play{
 margin-top: 40px;
