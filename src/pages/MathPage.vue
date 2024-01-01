@@ -153,14 +153,14 @@ export default {
           this.message = `Uhhh...se agoto tu tiempo!!!!`
           setTimeout(
           this.gameOver= true
-        ,2000);
+        ,1000);
          // this.showButtom =true
         } else{
           this.showAnswer = true
           this.message = `Uhhh...se agoto tu tiempo!!!!`
           setTimeout(
           this.contGame
-        ,2000);
+        ,1000);
         }       
     },
 
@@ -259,24 +259,24 @@ export default {
       this.showAnswer = true
       if (resp === this.respuesta.resp) {
         this.puntos+= this.sumaPuntos
-        this.message = `Correcto, la respuesta es ${this.respuesta.resp}`
+        this.message = `Correcto!!!`
         setTimeout(
           this.contGame
-        ,2000);
+        ,1000);
       } else{
         this.perdTime= false
         this.vidas-=1
         if(this.vidas===0){
-          this.message = `Opps, la respuesta era ${this.respuesta.resp}`
+          this.message = `Opps, error!!!!!`
           setTimeout(
           this.gameOver= true
-        ,2000);
+        ,1000);
          // this.showButtom =true
         } else{
-          this.message = `Opps, la respuesta era ${this.respuesta.resp}`
+          this.message =`Opps, error!!!!!`
           setTimeout(
           this.contGame
-        ,2000);
+        ,1000);
         }
  
       } 
